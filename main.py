@@ -89,7 +89,10 @@ def multi_pages(bits=None, filename=None):
 def file_to_bits(file):
     with open(file, "rb") as f:
         data = f.read()
-        return [1 if 2 ** i & byte else 0 for i in range(8) for byte in data]
+        bytes = []
+        for byte in data:
+            bytes.extend([1 if 2 ** i & byte else 0 for i in range(8)])
+        return bytes
 
 
 if __name__ == "__main__":
